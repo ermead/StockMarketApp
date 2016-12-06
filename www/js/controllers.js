@@ -52,18 +52,22 @@ angular.module('StockWatcher.controllers', [])
   console.log("app ctrl");
 })
 
-.controller('MyStocksCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'array object title defined for first time', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 },
-    { title: 'new data from controller', id: 7 }
+.controller('MyStocksCtrl', ['$scope', 
+function($scope) {
+  $scope.myStocksArray = [
+    {ticker: "FB"},
+    {ticker: "NFLX"},
+    {ticker: "GPRO"},
+    {ticker: "GOOG"},
+    {ticker: "APL"},
+    {ticker: "NKE"},
+    {ticker: "TSLA"},
+    {ticker: "ION"},
+    {ticker: "IBM"},
+    {ticker: "RASP"}
   ];
-  console.log("playlists ctrl");
-})
+  console.log("my stocks ctrl");
+}])
 
 .controller('StockCtrl', function($scope, $stateParams) {
 
@@ -71,6 +75,6 @@ angular.module('StockWatcher.controllers', [])
   $scope.dynamicTitle = $stateParams.id;
   console.log($stateParams.title);
   console.log($scope.dynamicTitle);
-  console.log("playlist ctrl");
+  console.log("stock ctrl");
   
 });
