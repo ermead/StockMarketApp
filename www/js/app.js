@@ -1,5 +1,11 @@
 
-angular.module('StockWatcher', ['ionic', 'StockWatcher.controllers'])
+angular.module('StockWatcher', [
+  'ionic',
+  'StockWatcher.controllers',
+  'StockWatcher.services',
+  'StockWatcher.directives',
+  'StockWatcher.filters'
+  ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
