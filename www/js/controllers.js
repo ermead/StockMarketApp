@@ -69,12 +69,12 @@ function($scope) {
   console.log("my stocks ctrl");
 }])
 
-.controller('StockCtrl', function($scope, $stateParams) {
+.controller('StockCtrl', [
+  '$scope',
+  '$stateParams',
+   function($scope, $stateParams) {
 
-  
-  $scope.dynamicTitle = $stateParams.id;
-  console.log($stateParams.title);
-  console.log($scope.dynamicTitle);
+  $scope.ticker = $stateParams.stockTicker;
   console.log("stock ctrl");
   
-});
+}]);
