@@ -55,7 +55,7 @@ angular.module('StockWatcher.controllers', [])
 .controller('MyStocksCtrl', ['$scope', 
 function($scope) {
   $scope.myStocksArray = [
-    {ticker: "FB"},
+    {ticker: "FBS"},
     {ticker: "NFLX"},
     {ticker: "GPRO"},
     {ticker: "GOOG"},
@@ -76,9 +76,11 @@ function($scope) {
    function($scope, $stateParams, $http) {
 
    // http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail
-   $http.get("http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail")
+   console.log("trying to get json");
+   
+   $http.get("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20IN%20(%22YHOO%22)&format=json&env=http://datatables.org/alltables.env", '')
     .then(function(jsonData){
-      
+      console.log("getting json");
       console.log(jsonData);
 
     });
