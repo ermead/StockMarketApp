@@ -72,9 +72,10 @@ function($scope) {
 .controller('StockCtrl', [
   '$scope',
   '$stateParams',
+  '$window',
   'stockDataService',
   'dateService',
-   function($scope, $stateParams, stockDataService, dateService) {
+   function($scope, $stateParams, $window, stockDataService, dateService) {
 
    // http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail
   console.log("trying to get json");
@@ -107,6 +108,8 @@ function($scope) {
 
   }
 
+
+
   $scope.myData = [
 		{
 			"key": "volume" ,
@@ -128,14 +131,14 @@ function($scope) {
 	var xTickFormat = function(d) {
 		var dx = $scope.myData[0].values[d] && $scope.myData[0].values[d].x || 0;
 		if (dx > 0) {
-      return d3.time.format("%x")(new Date(dx));
+      return d3.time.format("%b %d")(new Date(dx));
 		}
 		return null;
 	};
 
   var x2TickFormat = function(d) {
     var dx = $scope.myData[0].values[d] && $scope.myData[0].values[d].x || 0;
-    return d3.time.format('%b-%Y')(new Date(dx));
+    return d3.time.format('%b %Y')(new Date(dx));
   };
 
   var y1TickFormat = function(d) {
@@ -143,30 +146,34 @@ function($scope) {
   };
 
   var y2TickFormat = function(d) {
-    return d3.format(',.2f')(d);
+    return d3.format('s')(d);
   };
 
   var y3TickFormat = function(d) {
-    return d3.format(',f')(d);
+    return d3.format(',.2s')(d);
   };
 
   var y4TickFormat = function(d) {
-    return d3.format(',.2f')(d);
+    return d3.format(',.2s')(d);
   };
 
   var xValueFunction = function(d, i) {
     return i;
   };
 
+  var marginBottom = ($window.innerWidth / 100) * 10;
+
 	$scope.chartOptions = {
     chartType: 'linePlusBarWithFocusChart',
     data: 'myData',
-		height: 500,
-    margin: {top: 30, right: 75, bottom: 50, left: 75},
+    margin: {top: 15, right: 40, bottom: marginBottom, left: 70},
     interpolate: "cardinal",
-    useInteractiveGuideline: true,
+    useInteractiveGuideline: false,
     yShowMaxMin: false,
-    tooltips: true,
+    tooltips: false,
+    showLegend: false,
+    useVoronoi: false,
+    xShowMaxMin: false,
     xValue: xValueFunction,
     xAxisTickFormat: xTickFormat,
     x2AxisTickFormat: x2TickFormat,
