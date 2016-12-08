@@ -4,26 +4,55 @@
 
     <div class="buttons" side = "left">
       <div class="button button-clear">
-       <h6>Company Name Inc.</h6>
+       <h6>{{stockPriceData.Name}}</h6>
      </div>
     </div>
 
-      <h2 class="title button-left button-right">1000.5000</h2>
+      <h2 class="title button-left button-right">{{stockPriceData.
+LastTradePriceOnly}}</h2>
 
      <div class="buttons" side = "right">
       <div class="button button-clear">
-       <h6>+100.0000%</h6>
+       <h6>{{stockPriceData.PercentChange}}</h6>
      </div>
     </div>
 
   </div>
   <ion-content class="has-subheader">
-    
+
+    <div class="button bar">
+      <div ng-click = "chartViewFunc(1)" ng-class="chartView == 1 ? 'active' : ''" class="button">Day</div>
+      <div ng-click = "chartViewFunc(2)" ng-class="chartView == 2 ? 'active' : ''" class="button">Week</div>
+      <div ng-click = "chartViewFunc(3)" ng-class="chartView == 3 ? 'active' : ''" class="button">3M</div>
+      <div ng-click = "chartViewFunc(4)" ng-class="chartView == 4 ? 'active' : ''" class="button">Year</div>
+      <div ng-click = "chartViewFunc(5)" ng-class="chartView == 5 ? 'active' : ''" class="button">Max</div>
+    </div>
+
+    <img ng-if = "chartView == 1" ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=1d&q=l&l=on&z=m&a=vm" style="width: 100%;">
+    <img ng-if = "chartView == 2"ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=5d&q=l&l=on&z=m&a=vm" style="width: 100%;">
+    <img ng-if = "chartView == 3"ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=3m&q=l&l=on&z=m&a=vm" style="width: 100%;">
+    <img ng-if = "chartView == 4"ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=1y&q=l&l=on&z=m&a=vm" style="width: 100%;">
+    <img ng-if = "chartView == 5"ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=my&q=l&l=on&z=m&a=vm" style="width: 100%;">
+
     <div class="card">
       <div class="item item-divider">Market Data</div>
       <div class="row row-center">
-        <div class="col">Data: </div>
-        <div class="col">1000.5000</div>
+        <div class="col">Ask: </div>
+        <div class="col">{{stockPriceData.Ask}}</div>
+        <div class="col">Bid: </div>
+        <div class="col">{{stockPriceData.Bid}}</div>
+      </div>
+        <div class="row row-center">
+        <div class="col">Day's High: </div>
+        <div class="col">{{stockPriceData.DaysHigh}}</div>
+        <div class="col">Day's Low: </div>
+        <div class="col">{{stockPriceData.DaysLow}}</div>
+      </div>
+        <div class="row row-center">
+        <div class="col">Year High: </div>
+        <div class="col">{{stockPriceData.YearHigh}}</div>
+        <div class="col">Year Low: </div>
+        <div class="col">{{stockPriceData.YearLow}}</div>
       </div>
     </div>
 
@@ -44,3 +73,250 @@
 
   </ion-content>
 </ion-view>
+
+<!--/*
+null
+Ask
+:
+"9.43"
+AskRealtime
+:
+null
+AverageDailyVolume
+:
+"7711480"
+Bid
+:
+"9.39"
+BidRealtime
+:
+null
+BookValue
+:
+"3.61"
+Change
+:
+"-0.38"
+ChangeFromFiftydayMovingAverage
+:
+"-2.06"
+ChangeFromTwoHundreddayMovingAverage
+:
+"-3.25"
+ChangeFromYearHigh
+:
+"-11.13"
+ChangeFromYearLow
+:
+"0.75"
+ChangePercentRealtime
+:
+null
+ChangeRealtime
+:
+null
+Change_PercentChange
+:
+"-0.38 - -3.90%"
+ChangeinPercent
+:
+"-3.90%"
+Commission
+:
+null
+Currency
+:
+"USD"
+DaysHigh
+:
+"9.79"
+DaysLow
+:
+"9.33"
+DaysRange
+:
+"9.33 - 9.79"
+DaysRangeRealtime
+:
+null
+DaysValueChange
+:
+null
+DaysValueChangeRealtime
+:
+null
+DividendPayDate
+:
+null
+DividendShare
+:
+null
+DividendYield
+:
+null
+EBITDA
+:
+"-341.39M"
+EPSEstimateCurrentYear
+:
+"-1.48"
+EPSEstimateNextQuarter
+:
+"-0.24"
+EPSEstimateNextYear
+:
+"-0.26"
+EarningsShare
+:
+"-2.44"
+ErrorIndicationreturnedforsymbolchangedinvalid
+:
+null
+ExDividendDate
+:
+null
+FiftydayMovingAverage
+:
+"11.43"
+HighLimit
+:
+null
+HoldingsGain
+:
+null
+HoldingsGainPercent
+:
+null
+HoldingsGainPercentRealtime
+:
+null
+HoldingsGainRealtime
+:
+null
+HoldingsValue
+:
+null
+HoldingsValueRealtime
+:
+null
+LastTradeDate
+:
+"12/7/2016"
+LastTradePriceOnly
+:
+"9.37"
+LastTradeRealtimeWithTime
+:
+null
+LastTradeTime
+:
+"4:00pm"
+LastTradeWithTime
+:
+"4:00pm - <b>9.37</b>"
+LowLimit
+:
+null
+MarketCapRealtime
+:
+null
+MarketCapitalization
+:
+"1.32B"
+MoreInfo
+:
+null
+Name
+:
+"GoPro, Inc."
+Notes
+:
+null
+OneyrTargetPrice
+:
+"10.15"
+Open
+:
+"9.75"
+OrderBookRealtime
+:
+null
+PEGRatio
+:
+"0.51"
+PERatio
+:
+null
+PERatioRealtime
+:
+null
+PercebtChangeFromYearHigh
+:
+"-54.29%"
+PercentChange
+:
+"-3.90%"
+PercentChangeFromFiftydayMovingAverage
+:
+"-18.02%"
+PercentChangeFromTwoHundreddayMovingAverage
+:
+"-25.78%"
+PercentChangeFromYearLow
+:
+"+8.70%"
+PreviousClose
+:
+"9.75"
+PriceBook
+:
+"2.70"
+PriceEPSEstimateCurrentYear
+:
+null
+PriceEPSEstimateNextYear
+:
+null
+PricePaid
+:
+null
+PriceSales
+:
+"1.27"
+SharesOwned
+:
+null
+ShortRatio
+:
+"5.24"
+StockExchange
+:
+"NMS"
+Symbol
+:
+"GPRO"
+TickerTrend
+:
+null
+TradeDate
+:
+null
+TwoHundreddayMovingAverage
+:
+"12.62"
+Volume
+:
+"5008517"
+YearHigh
+:
+"20.50"
+YearLow
+:
+"8.62"
+YearRange
+:
+"8.62 - 20.50"
+symbol
+:
+"GPRO"
+*/-->

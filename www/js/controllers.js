@@ -72,20 +72,36 @@ function($scope) {
 .controller('StockCtrl', [
   '$scope',
   '$stateParams',
-  '$http',
   'stockDataService',
-   function($scope, $stateParams, $http, stockDataService) {
+   function($scope, $stateParams, stockDataService) {
 
    // http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail
   console.log("trying to get json");
-
+  $scope.chartView = 1;
   $scope.ticker = $stateParams.stockTicker;
   console.log("stock ctrl");
 
-  var promise = stockDataService.getPriceData($scope.ticker);
+  $scope.$on("$ionicView.afterEnter", function(){
+    console.log("getting Price Data");
+    getPriceData();
+  });
 
-   promise.then(function(data){
-     console.log(data);
-   });
+  $scope.chartViewFunc = function(n){
+    $scope.chartView = n;
+  }
+
+  function getPriceData() {
+
+    var promise = stockDataService.getPriceData($scope.ticker);
+    
+    promise.then(function(data){
+      console.log("logging data");
+      console.log(data);
+      $scope.stockPriceData = data;
+
+    });
+
+  }
+ 
   
 }]);
