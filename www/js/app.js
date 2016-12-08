@@ -1,6 +1,8 @@
 
 angular.module('StockWatcher', [
   'ionic',
+  'nvd3',
+  'nvChart',
   'StockWatcher.controllers',
   'StockWatcher.services',
   'StockWatcher.directives',
