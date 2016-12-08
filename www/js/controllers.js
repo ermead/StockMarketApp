@@ -73,19 +73,19 @@ function($scope) {
   '$scope',
   '$stateParams',
   '$http',
-   function($scope, $stateParams, $http) {
+  'stockDataService',
+   function($scope, $stateParams, $http, stockDataService) {
 
    // http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail
-   console.log("trying to get json");
-   
-   $http.get("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20IN%20(%22YHOO%22)&format=json&env=http://datatables.org/alltables.env").then(function(jsonData){
-      console.log("getting json");
-      console.log(jsonData.data.query.results.quote);
-
-    });
-
+  console.log("trying to get json");
 
   $scope.ticker = $stateParams.stockTicker;
   console.log("stock ctrl");
+
+  var promise = stockDataService.getPriceData($scope.ticker);
+
+   promise.then(function(data){
+     console.log(data);
+   });
   
 }]);
