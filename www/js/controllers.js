@@ -72,7 +72,17 @@ function($scope) {
 .controller('StockCtrl', [
   '$scope',
   '$stateParams',
-   function($scope, $stateParams) {
+  '$http',
+   function($scope, $stateParams, $http) {
+
+   // http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail
+   $http.get("http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?bypass=true&format=json&view=detail")
+    .then(function(jsonData){
+      
+      console.log(jsonData);
+
+    });
+
 
   $scope.ticker = $stateParams.stockTicker;
   console.log("stock ctrl");
